@@ -1,0 +1,9 @@
+[oxlint]
+target = "es2022"
+deny = [
+  "eqeqeq",
+  "no-const-assign"
+]
+allow = [
+  "no-unused-vars"
+]

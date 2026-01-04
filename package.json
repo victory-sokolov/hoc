@@ -1,0 +1,37 @@
+{
+  "name": "hoc",
+  "version": "0.0.1",
+  "description": "Calculate Hits-of-Code metric for Git repositories",
+  "main": "dist/index.js",
+  "bin": {
+    "hoc": "dist/cli.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "bun run build && bun test",
+    "test:cli": "bun run build && bun test tests/cli.test.ts",
+    "test:unit": "bun run build && bun test tests/*.test.ts --exclude tests/cli.test.ts",
+    "lint": "oxlint src tests",
+    "format": "prettier --write index.ts package.json src tests",
+    "typecheck": "tsc --noEmit",
+    "prepare": "bun run build",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": [
+    "hits-of-code",
+    "hoc",
+    "git",
+    "metrics"
+  ],
+  "author": "Viktor Sokolov",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prettier": "3.7.4",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "commander": "^14.0.2"
+  }
+}
