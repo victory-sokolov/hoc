@@ -13,6 +13,7 @@
         "test:cli": "bun run build && bun test tests/cli.test.ts",
         "test:unit": "bun run build && bun test tests/*.test.ts --exclude tests/cli.test.ts",
         "lint": "oxlint src tests",
+        "lint:fix": "oxlint --fix src tests",
         "format": "prettier --write index.ts package.json src tests",
         "typecheck": "tsc --noEmit",
         "prepare": "bun run build",
@@ -26,6 +27,10 @@
     ],
     "author": "Viktor Sokolov",
     "license": "MIT",
+    "prettier": {
+        "tabWidth": 4,
+        "useTabs": false
+    },
     "devDependencies": {
         "@types/bun": "latest",
         "oxlint": "1.36.0",
