@@ -1,15 +1,10 @@
-import {
-  writeFileSync,
-  mkdirSync,
-  mkdtempSync,
-  rmSync,
-} from "fs";
+import { writeFileSync, mkdirSync, mkdtempSync, rmSync } from "fs";
 import { execSync } from "child_process";
 import { dirname, join } from "path";
 import { describe, expect, it } from "bun:test";
 import { tmpdir } from "os";
 
-const PROJECT_ROOT = dirname(dirname(import.meta.dir));
+const PROJECT_ROOT = dirname(import.meta.dir);
 
 describe("CLI", () => {
   const createTempGitRepo = (withFile = true): string => {
@@ -301,7 +296,7 @@ describe("CLI", () => {
 
       try {
         const output = runCLI("-V", dir);
-        expect(output).toContain("0.0.1");
+        expect(output).toContain("0.1.0");
       } finally {
         rmSync(dir, { recursive: true, force: true });
       }

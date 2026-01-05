@@ -1,14 +1,15 @@
-import { readFileSync, existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { Command } from "commander";
 import { Base } from "./base.js";
+import packageJson from "../package.json";
 
 function loadConfigArgs(): string[] {
   if (existsSync(".hoc")) {
     const content = readFileSync(".hoc", "utf-8");
     return content
       .split(/\s+/)
-      .map((arg) => arg.trim())
-      .filter((arg) => arg.length > 0);
+      .map((arg: string) => arg.trim())
+      .filter((arg: string) => arg.length > 0);
   }
   return [];
 }
@@ -19,7 +20,7 @@ async function main(): Promise<void> {
 
   const program = new Command();
   program
-    .version("0.1.0")
+    .version(packageJson.version)
     .option("-f, --format <format>", "Output format (text|xml|json|int)", "int")
     .option(
       "-e, --exclude <patterns...>",
@@ -37,7 +38,7 @@ async function main(): Promise<void> {
       "Set the end date of hoc (YYYY-MM-DD)",
       new Date().toISOString().split("T")[0],
     )
-    .parse([...configArgs, ...cliArgs]);
+    .parse([process.argv[0], process.argv[1], ...configArgs, ...cliArgs]);
 
   const options = program.opts();
 
